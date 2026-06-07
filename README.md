@@ -39,6 +39,7 @@ OPENAI_DEFAULT_MODEL=gpt-5.5
 ENGINE_FILEPATH=/workspace/engine.py
 MODEL_CONFIG_FILEPATH=/target/model_config.json
 WEIGHT_DIR=/target/weights
+AGENT_MAX_TURNS=10
 ```
 
 ## Dev Environment
