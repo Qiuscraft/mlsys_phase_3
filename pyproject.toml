@@ -17,3 +17,7 @@ dev = [
     "pre-commit>=4.6.0",
     "ruff>=0.15.16",
 ]
+
+[[tool.uv.index]]
+name = "volces"
+url = "https://mirrors.volces.com/pypi/simple/"
