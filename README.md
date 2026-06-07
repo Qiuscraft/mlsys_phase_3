@@ -60,3 +60,16 @@ LOG_FILEPATH=/workspace/results.log
 AGENT_MAX_TURNS=640
 AGENT_EXIT_MAX_CHECKS=100
 ```
+
+run.sh
+
+```bash
+#!/usr/bin/env bash
+set -euo pipefail
+
+cd /workspace/mlsys_phase_3
+pip install -r requirements.txt
+python src/main.py
+```
+
+chmod +x run.sh
