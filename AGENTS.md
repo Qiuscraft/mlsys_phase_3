@@ -6,4 +6,4 @@ When using the OpenAI Agents Python SDK, Read the [OpenAI Agents Python SDK docu
 
 # Code Style
 
-1. You can not use Path(__file__).resolve().parents[2] to get the root directory of the project, you can just consider the root directory is "mlsys_phase_3/".
+1. You can not use Path(__file__).resolve().parents[2] to get the root directory of the project, you can just assume that the root directory is "mlsys_phase_3/".
