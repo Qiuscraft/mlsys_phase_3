@@ -20,7 +20,7 @@ def view_engine_file() -> str:
 def create_engine_file_from_template():
     """Create a workspace/engine.py file with the content from the template."""
     with open(get_engine_filepath(), "x", encoding="utf-8") as f:
-        f.write(read_file("src/agent/tools/engine_file/engine_template.py"))
+        f.write(read_file("prompts/engine_template.py"))
 
 
 @function_tool
