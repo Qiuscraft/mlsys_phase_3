@@ -22,7 +22,7 @@ def test_correctness() -> str:
         "--model-config",
         os.getenv("MODEL_CONFIG_FILEPATH", "/target/model_config.json"),
         "--weight-dir",
-        os.getenv("WEIGHT_DIR", "target/weights"),
+        os.getenv("WEIGHT_DIR", "/target/weights"),
         "--device",
         os.getenv("EVALUATION_DEVICE", "auto"),
         "--atol",
@@ -42,6 +42,53 @@ def test_correctness() -> str:
                 inserted_paths.append(path)
 
         from evaluator.test_correctness import main
+
+        sys.argv = argv
+        with redirect_stdout(output), redirect_stderr(output):
+            main()
+    except Exception:
+        return output.getvalue() + traceback.format_exc()
+    finally:
+        sys.argv = old_argv
+        for path in inserted_paths:
+            sys.path.remove(path)
+
+    return output.getvalue()
+
+
+@function_tool
+def benchmark_throughput() -> str:
+    """Run the public throughput benchmark for workspace/engine.py."""
+
+    src_dir = "src"
+    evaluator_dir = "src/evaluator"
+    argv = [
+        "benchmark_throughput.py",
+        "--engine",
+        get_engine_filepath(),
+        "--model-config",
+        os.getenv("MODEL_CONFIG_FILEPATH", "target/model_config.json"),
+        "--weight-dir",
+        os.getenv("WEIGHT_DIR", "target/weights"),
+        "--device",
+        os.getenv("EVALUATION_DEVICE", "auto"),
+        "--warmup",
+        os.getenv("EVALUATION_WARMUP", "1"),
+        "--repeat",
+        os.getenv("EVALUATION_REPEAT", "3"),
+    ]
+
+    old_argv = sys.argv[:]
+    inserted_paths: list[str] = []
+    output = io.StringIO()
+
+    try:
+        for path in (src_dir, evaluator_dir):
+            if path not in sys.path:
+                sys.path.insert(0, path)
+                inserted_paths.append(path)
+
+        from evaluator.benchmark_throughput import main
 
         sys.argv = argv
         with redirect_stdout(output), redirect_stderr(output):

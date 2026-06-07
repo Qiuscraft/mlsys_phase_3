@@ -16,6 +16,7 @@ agent = Agent(
         engine_file.replace_in_engine_file,
         engine_file.append_to_engine_file,
         evaluation.test_correctness,
+        evaluation.benchmark_throughput,
     ],
 )
 

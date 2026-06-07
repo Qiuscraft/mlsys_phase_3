@@ -2,12 +2,6 @@
 
 Generate an inference runtime for a small LLaMA-like decoder-only model.
 
-## Workflow
-
-1. Delete the old workspace/engine.py file, and create a workspace/engine.py file from the template.
-2. Edit the workspace/engine.py file to implement the required methods `prefill`, `decode`, and `remove`, you should consider the correctness of your implementation.
-3. Test correctness of your implementation, if the test failed, back to 3.
-
 ## Introduction of the engine.py File
 
 `workspace/engine.py` must define:
@@ -64,3 +58,10 @@ Input:
 - `request_ids`: a list of finished request IDs
 
 This method does not need to return anything. It should release or delete the request state associated with those IDs.
+
+## Workflow
+
+1. Delete the old workspace/engine.py file, and create a workspace/engine.py file from the template.
+2. Edit the workspace/engine.py file to implement the required methods `prefill`, `decode`, and `remove`, you should consider the correctness of your implementation.
+3. Test correctness of your implementation, if the test failed, back to 3.
+4. Run the throughput benchmark.
