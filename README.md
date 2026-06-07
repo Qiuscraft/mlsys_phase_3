@@ -1,5 +1,10 @@
 # Qiu Jun's Implementation for MLSYS Course Project Phase 3
 
+## Technical Stack
+
+- IDE: Visual Studio Code
+- Package Manager: uv
+
 ## Installation
 
 ### Python Environment
