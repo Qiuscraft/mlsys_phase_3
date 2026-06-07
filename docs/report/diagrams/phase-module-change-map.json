@@ -1,0 +1,232 @@
+{
+  "version": 2,
+  "nodes": [
+    {
+      "type": "text",
+      "x": 20,
+      "y": 18,
+      "width": 1180,
+      "height": "fit-content",
+      "text": "模块增删关系：为什么架构需要变化",
+      "fontSize": 26,
+      "textColor": "#1F2329",
+      "textAlign": "center"
+    },
+    {
+      "type": "frame",
+      "id": "kept",
+      "x": 60,
+      "y": 120,
+      "width": 250,
+      "height": 120,
+      "layout": "vertical",
+      "gap": 8,
+      "padding": 14,
+      "justifyContent": "center",
+      "alignItems": "stretch",
+      "fillColor": "#F0F4FC",
+      "borderColor": "#5178C6",
+      "borderWidth": 2,
+      "borderRadius": 8,
+      "children": [
+        {
+          "type": "text",
+          "width": "fill-container",
+          "height": "fit-content",
+          "text": "持续保留",
+          "fontSize": 16,
+          "textColor": "#1F2329",
+          "textAlign": "center"
+        },
+        {
+          "type": "text",
+          "width": "fill-container",
+          "height": "fit-content",
+          "text": "LLM 生成\n外部验证\n日志记录",
+          "fontSize": 13,
+          "textColor": "#646A73",
+          "textAlign": "center"
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "removed",
+      "x": 360,
+      "y": 120,
+      "width": 250,
+      "height": 120,
+      "layout": "vertical",
+      "gap": 8,
+      "padding": 14,
+      "justifyContent": "center",
+      "alignItems": "stretch",
+      "fillColor": "#FEE3E2",
+      "borderColor": "#D25D5A",
+      "borderWidth": 2,
+      "borderRadius": 8,
+      "children": [
+        {
+          "type": "text",
+          "width": "fill-container",
+          "height": "fit-content",
+          "text": "逐步删除/弱化",
+          "fontSize": 16,
+          "textColor": "#1F2329",
+          "textAlign": "center"
+        },
+        {
+          "type": "text",
+          "width": "fill-container",
+          "height": "fit-content",
+          "text": "MCP 服务层\nJSON Schema 输出约束\n单次分析式回答",
+          "fontSize": 13,
+          "textColor": "#646A73",
+          "textAlign": "center"
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "added2",
+      "x": 660,
+      "y": 120,
+      "width": 250,
+      "height": 120,
+      "layout": "vertical",
+      "gap": 8,
+      "padding": 14,
+      "justifyContent": "center",
+      "alignItems": "stretch",
+      "fillColor": "#EAE2FE",
+      "borderColor": "#8569CB",
+      "borderWidth": 2,
+      "borderRadius": 8,
+      "children": [
+        {
+          "type": "text",
+          "width": "fill-container",
+          "height": "fit-content",
+          "text": "Phase 2 新增",
+          "fontSize": 16,
+          "textColor": "#1F2329",
+          "textAlign": "center"
+        },
+        {
+          "type": "text",
+          "width": "fill-container",
+          "height": "fit-content",
+          "text": "benchmark 采纳\nncu profile 优化\nbest code 管理",
+          "fontSize": 13,
+          "textColor": "#646A73",
+          "textAlign": "center"
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "added3",
+      "x": 960,
+      "y": 120,
+      "width": 250,
+      "height": 120,
+      "layout": "vertical",
+      "gap": 8,
+      "padding": 14,
+      "justifyContent": "center",
+      "alignItems": "stretch",
+      "fillColor": "#DFF5E5",
+      "borderColor": "#509863",
+      "borderWidth": 2,
+      "borderRadius": 8,
+      "children": [
+        {
+          "type": "text",
+          "width": "fill-container",
+          "height": "fit-content",
+          "text": "Phase 3 新增",
+          "fontSize": 16,
+          "textColor": "#1F2329",
+          "textAlign": "center"
+        },
+        {
+          "type": "text",
+          "width": "fill-container",
+          "height": "fit-content",
+          "text": "candidate/stable\nrevision 状态\n退出门禁",
+          "fontSize": 13,
+          "textColor": "#646A73",
+          "textAlign": "center"
+        }
+      ]
+    },
+    {
+      "type": "rect",
+      "id": "why1",
+      "x": 75,
+      "y": 315,
+      "width": 220,
+      "height": 54,
+      "text": "共同目标：让 Agent 依据证据行动",
+      "fontSize": 14,
+      "textColor": "#1F2329",
+      "textAlign": "center",
+      "verticalAlign": "middle",
+      "fillColor": "#FFFFFF",
+      "borderColor": "#5178C6",
+      "borderWidth": 2,
+      "borderRadius": 8
+    },
+    {
+      "type": "rect",
+      "id": "why2",
+      "x": 375,
+      "y": 315,
+      "width": 220,
+      "height": 54,
+      "text": "原因：产物从回答变成代码文件",
+      "fontSize": 14,
+      "textColor": "#1F2329",
+      "textAlign": "center",
+      "verticalAlign": "middle",
+      "fillColor": "#FFFFFF",
+      "borderColor": "#D25D5A",
+      "borderWidth": 2,
+      "borderRadius": 8
+    },
+    {
+      "type": "rect",
+      "id": "why3",
+      "x": 675,
+      "y": 315,
+      "width": 220,
+      "height": 54,
+      "text": "原因：性能成为硬指标",
+      "fontSize": 14,
+      "textColor": "#1F2329",
+      "textAlign": "center",
+      "verticalAlign": "middle",
+      "fillColor": "#FFFFFF",
+      "borderColor": "#8569CB",
+      "borderWidth": 2,
+      "borderRadius": 8
+    },
+    {
+      "type": "rect",
+      "id": "why4",
+      "x": 975,
+      "y": 315,
+      "width": 220,
+      "height": 54,
+      "text": "原因：Runtime 更复杂，需防回退",
+      "fontSize": 14,
+      "textColor": "#1F2329",
+      "textAlign": "center",
+      "verticalAlign": "middle",
+      "fillColor": "#FFFFFF",
+      "borderColor": "#509863",
+      "borderWidth": 2,
+      "borderRadius": 8
+    }
+  ]
+}

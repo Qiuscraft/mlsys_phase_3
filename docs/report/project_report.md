@@ -1,5 +1,24 @@
 # MLSYS Phase 3 项目报告：自动化 LLM 推理 Runtime 生成 Agent
 
+## 摘要
+
+前三章介绍 Phase 3 项目：自动生成 LLM 推理 Runtime 的 Agent 设计、总体架构和核心模块实现。第四章介绍整个 MLSYS PJ 从 Phase 1 到 Phase 3 的演进过程，对比三期需求变化、架构变化和模块增删原因。
+
+## 目录
+
+- [1. 项目目标](#1-项目目标)
+- [2. 架构设计](#2-架构设计)
+  - [2.1 总体架构](#21-总体架构)
+  - [2.2 Agent 流程图](#22-agent-流程图)
+- [3. 模块设计](#3-模块设计)
+  - [3.1 启动与日志模块](#31-启动与日志模块)
+  - [3.2 Agent 编排模块](#32-agent-编排模块)
+  - [3.3 Engine 文件管理模块](#33-engine-文件管理模块)
+  - [3.4 评测工具模块](#34-评测工具模块)
+  - [3.5 Benchmark 分析模块](#35-benchmark-分析模块)
+  - [3.6 运行状态与提交门禁模块](#36-运行状态与提交门禁模块)
+- [4. Phase 1/2/3 Agent 架构演进](#4-phase-123-agent-架构演进)
+
 ## 1. 项目目标
 
 本项目要实现一个可以自动生成 LLM 推理 Runtime 的 Agent，而不是直接提交静态 `engine.py`。评测系统执行 `run.sh` 后，Agent 需要在 `workspace/engine.py` 中生成满足接口要求的 Runtime。生成的 Runtime 需要支持 `create_engine(...)`、`prefill(...)`、`decode(...)` 和 `remove(...)`，并能根据传入的 `model_config` 与权重目录完成 LLaMA-like decoder-only 模型推理。正确性由 reference model 对比 logits 判断，吞吐由 prefill、decode 和 mixed 请求 trace 测量。项目的工程重点是让 Agent 形成“生成代码、测试正确性、跑 benchmark、分析瓶颈、提交更优版本”的闭环。
@@ -287,3 +306,50 @@ score = sum(total_tokens) / sum(elapsed_seconds)
 #### 设计考虑
 
 这个模块的核心是把“文件内容版本”和“测试结果版本”绑定。没有 revision 机制时，Agent 可能在一次通过测试后继续编辑代码，然后沿用旧测试结果退出。当前实现避免了这个问题。
+
+## 4. Phase 1/2/3 Agent 架构演进
+
+三期项目的共同主线是“让 Agent 接管系统工程中的专家工作”。变化点不在于是否调用 LLM，而在于 Agent 面对的对象越来越大：Phase 1 面向硬件指标，Phase 2 面向单个 CUDA 算子，Phase 3 面向完整 LLM 推理 Runtime。
+
+![图9：三期任务演进](diagrams/phase-evolution-timeline.png)
+
+### 4.1 需求如何变化
+
+| 阶段 | 目标产物 | 核心任务 | 正确性/评价方式 |
+| --- | --- | --- | --- |
+| Phase 1 | `results.json` | 生成 micro-benchmark，分析 `ncu` 指标，推断 GPU 硬件参数 | 与真实硬件参数对齐，并由 LLM-as-a-Judge 评价推理方法 |
+| Phase 2 | `optimized_lora.cu` | 生成 LoRA 算子的 CUDA 实现，并迭代优化平均 speedup | `torch.allclose` 保证正确性，官方 harness 计算 speedup |
+| Phase 3 | `workspace/engine.py` | 生成 decoder-only LLM 推理 Runtime，支持 prefill/decode/remove | logits 对齐 reference model，官方 serving trace 测吞吐 |
+
+需求演进可以概括为三点：
+
+- **对象扩大**：硬件参数 → 单算子 CUDA → 多请求 Runtime。
+- **状态变复杂**：Phase 1 基本无长期代码状态；Phase 2 维护当前最优 `.cu`；Phase 3 维护候选/稳定 engine、请求状态和验证 revision。
+- **反馈更严格**：Phase 1 重证据和推理；Phase 2 加入 correctness + speedup；Phase 3 增加黑盒 Runtime API、服务式 trace 和退出门禁。
+
+### 4.2 架构如何演进
+
+![图10：Agent 架构演进](diagrams/phase-agent-architecture-evolution.png)
+
+Phase 1 的架构重点是“工具外置”：Agent 通过 MCP 服务调用 `nvcc` 和 `ncu`，再把结果按 JSON Schema 输出。它解决的是 Agent 如何可靠使用外部 GPU 分析工具。
+
+Phase 2 删除了 MCP 服务层，改为项目内部直接封装 benchmark 和 profile 函数。这样做的原因是任务从“分析报告”变成“反复生成和采纳代码”，闭环的关键变成 best-code 管理、编译失败修复和 speedup 比较。
+
+Phase 3 在 Phase 2 的闭环基础上继续工程化：引入候选/稳定文件隔离、revision 级验证状态、benchmark 后自动提交、退出门禁和静态瓶颈分析。这样做是因为 Runtime 产物更复杂，一次错误编辑可能破坏最终 `engine.py`，因此必须用状态机约束“什么时候能提交”和“什么时候能退出”。
+
+### 4.3 模块增删关系
+
+![图11：模块增删演进](diagrams/phase-module-change-map.png)
+
+| 模块/机制 | Phase 1 | Phase 2 | Phase 3 | 变化原因 |
+| --- | --- | --- | --- | --- |
+| MCP 服务 | 保留，用于暴露 `nvcc`/`ncu` 工具 | 删除 | 删除 | 后两期工具调用更贴近本地工程闭环，直接函数封装更轻 |
+| Prompt + Schema | 保留，约束硬件分析输出 | 弱化为代码生成 prompt | 弱化为 Agent instruction + workflow prompt | 产物从结构化回答转为代码文件，Schema 不再是主约束 |
+| Benchmark 工具 | 无独立采纳逻辑 | 新增，决定 `.cu` 是否可采纳 | 保留并升级，决定 candidate 是否提交 | 性能成为硬指标，需要可重复测量 |
+| Profile/分析工具 | `ncu` 指标用于硬件推断 | `ncu` profile 指导 CUDA 优化 | 静态源码信号 + benchmark 指标指导 Runtime 优化 | 分析对象从硬件/算子转为 Runtime 结构瓶颈 |
+| 最优产物管理 | 无 | 新增 `optimized_lora.cu` 最优版本 | 升级为 candidate/stable 双文件 | Phase 3 产物更大，必须避免坏版本覆盖稳定版本 |
+| 退出门禁 | 无 | 主要依赖时间和迭代次数 | 新增 correctness、benchmark、baseline 三重门禁 | 防止未测版本或无稳定版本提前退出 |
+
+### 4.4 总结
+
+从 Phase 1 到 Phase 3，Agent 架构的重心逐步从“会使用工具”转向“能管理工程闭环”。Phase 1 证明 Agent 可以通过 MCP 获取硬件证据；Phase 2 把证据接入代码生成和性能采纳；Phase 3 则把这个闭环扩展成带版本隔离、验证状态和退出门禁的 Runtime 生成系统。

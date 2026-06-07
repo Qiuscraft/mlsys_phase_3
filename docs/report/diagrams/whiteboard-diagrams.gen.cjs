@@ -325,6 +325,68 @@ const diagrams = {
     edge("commit", "exit"),
   ]),
 
+  "phase-evolution-timeline": doc([
+    title("三期任务演进：从分析到优化再到 Runtime"),
+    card("p1", 70, 125, 260, 116, "Phase 1", "GPU 硬件分析\nMCP + nvcc/ncu\n输出 results.json", C.blue, C.blueBg),
+    card("p2", 460, 125, 260, 116, "Phase 2", "LoRA 算子优化\n生成/测试/profile\n输出 optimized_lora.cu", C.purple, C.purpleBg),
+    card("p3", 850, 125, 280, 116, "Phase 3", "LLM 推理 Runtime\nprefill/decode/remove\n输出 workspace/engine.py", C.green, C.greenBg),
+    pill("focus1", 95, 300, 210, "会用工具收集证据", C.blue),
+    pill("focus2", 485, 300, 210, "会迭代采纳更优代码", C.purple),
+    pill("focus3", 885, 300, 220, "会管理版本与退出门禁", C.green),
+    edge("p1", "p2", { label: "任务对象扩大" }),
+    edge("p2", "p3", { label: "工程闭环增强" }),
+  ]),
+
+  "phase-agent-architecture-evolution": doc([
+    title("Agent 架构演进：工具调用 → 优化闭环 → 工程门禁"),
+    group("g1", 55, 100, 310, 250, "Phase 1：MCP 工具型 Agent", C.blue, C.blueBg),
+    pill("p1a", 105, 160, 220, "Agent + Prompt/Schema", C.blue),
+    pill("p1b", 105, 225, 220, "MCP Server", C.blue),
+    pill("p1c", 105, 290, 220, "nvcc / ncu 证据", C.blue),
+    {
+      type: "text",
+      x: 380,
+      y: 205,
+      width: 70,
+      height: "fit-content",
+      text: "→\n本地闭环",
+      fontSize: 15,
+      textColor: C.sub,
+      textAlign: "center",
+    },
+    group("g2", 465, 100, 310, 250, "Phase 2：代码优化闭环", C.purple, C.purpleBg),
+    pill("p2a", 480, 160, 220, "LLM 生成 CUDA", C.purple),
+    pill("p2b", 480, 225, 220, "benchmark + profile", C.purple),
+    pill("p2c", 480, 290, 220, "best optimized_lora.cu", C.purple),
+    {
+      type: "text",
+      x: 790,
+      y: 205,
+      width: 70,
+      height: "fit-content",
+      text: "→\n工程门禁",
+      fontSize: 15,
+      textColor: C.sub,
+      textAlign: "center",
+    },
+    group("g3", 875, 100, 320, 250, "Phase 3：Runtime 工程 Agent", C.green, C.greenBg),
+    pill("p3a", 915, 155, 240, "候选/稳定 engine 分离", C.green),
+    pill("p3b", 915, 220, 240, "correctness + benchmark 状态", C.green),
+    pill("p3c", 915, 285, 240, "退出门禁 + 自动提交", C.green),
+  ]),
+
+  "phase-module-change-map": doc([
+    title("模块增删关系：为什么架构需要变化"),
+    card("kept", 60, 120, 250, 120, "持续保留", "LLM 生成\n外部验证\n日志记录", C.blue, C.blueBg),
+    card("removed", 360, 120, 250, 120, "逐步删除/弱化", "MCP 服务层\nJSON Schema 输出约束\n单次分析式回答", C.red, C.redBg),
+    card("added2", 660, 120, 250, 120, "Phase 2 新增", "benchmark 采纳\nncu profile 优化\nbest code 管理", C.purple, C.purpleBg),
+    card("added3", 960, 120, 250, 120, "Phase 3 新增", "candidate/stable\nrevision 状态\n退出门禁", C.green, C.greenBg),
+    pill("why1", 75, 315, 220, "共同目标：让 Agent 依据证据行动", C.blue),
+    pill("why2", 375, 315, 220, "原因：产物从回答变成代码文件", C.red),
+    pill("why3", 675, 315, 220, "原因：性能成为硬指标", C.purple),
+    pill("why4", 975, 315, 220, "原因：Runtime 更复杂，需防回退", C.green),
+  ]),
+
 };
 
 for (const [name, diagram] of Object.entries(diagrams)) {

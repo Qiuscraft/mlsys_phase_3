@@ -1,0 +1,204 @@
+{
+  "version": 2,
+  "nodes": [
+    {
+      "type": "text",
+      "x": 20,
+      "y": 18,
+      "width": 1180,
+      "height": "fit-content",
+      "text": "三期任务演进：从分析到优化再到 Runtime",
+      "fontSize": 26,
+      "textColor": "#1F2329",
+      "textAlign": "center"
+    },
+    {
+      "type": "frame",
+      "id": "p1",
+      "x": 70,
+      "y": 125,
+      "width": 260,
+      "height": 116,
+      "layout": "vertical",
+      "gap": 8,
+      "padding": 14,
+      "justifyContent": "center",
+      "alignItems": "stretch",
+      "fillColor": "#F0F4FC",
+      "borderColor": "#5178C6",
+      "borderWidth": 2,
+      "borderRadius": 8,
+      "children": [
+        {
+          "type": "text",
+          "width": "fill-container",
+          "height": "fit-content",
+          "text": "Phase 1",
+          "fontSize": 16,
+          "textColor": "#1F2329",
+          "textAlign": "center"
+        },
+        {
+          "type": "text",
+          "width": "fill-container",
+          "height": "fit-content",
+          "text": "GPU 硬件分析\nMCP + nvcc/ncu\n输出 results.json",
+          "fontSize": 13,
+          "textColor": "#646A73",
+          "textAlign": "center"
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "p2",
+      "x": 460,
+      "y": 125,
+      "width": 260,
+      "height": 116,
+      "layout": "vertical",
+      "gap": 8,
+      "padding": 14,
+      "justifyContent": "center",
+      "alignItems": "stretch",
+      "fillColor": "#EAE2FE",
+      "borderColor": "#8569CB",
+      "borderWidth": 2,
+      "borderRadius": 8,
+      "children": [
+        {
+          "type": "text",
+          "width": "fill-container",
+          "height": "fit-content",
+          "text": "Phase 2",
+          "fontSize": 16,
+          "textColor": "#1F2329",
+          "textAlign": "center"
+        },
+        {
+          "type": "text",
+          "width": "fill-container",
+          "height": "fit-content",
+          "text": "LoRA 算子优化\n生成/测试/profile\n输出 optimized_lora.cu",
+          "fontSize": 13,
+          "textColor": "#646A73",
+          "textAlign": "center"
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "p3",
+      "x": 850,
+      "y": 125,
+      "width": 280,
+      "height": 116,
+      "layout": "vertical",
+      "gap": 8,
+      "padding": 14,
+      "justifyContent": "center",
+      "alignItems": "stretch",
+      "fillColor": "#DFF5E5",
+      "borderColor": "#509863",
+      "borderWidth": 2,
+      "borderRadius": 8,
+      "children": [
+        {
+          "type": "text",
+          "width": "fill-container",
+          "height": "fit-content",
+          "text": "Phase 3",
+          "fontSize": 16,
+          "textColor": "#1F2329",
+          "textAlign": "center"
+        },
+        {
+          "type": "text",
+          "width": "fill-container",
+          "height": "fit-content",
+          "text": "LLM 推理 Runtime\nprefill/decode/remove\n输出 workspace/engine.py",
+          "fontSize": 13,
+          "textColor": "#646A73",
+          "textAlign": "center"
+        }
+      ]
+    },
+    {
+      "type": "rect",
+      "id": "focus1",
+      "x": 95,
+      "y": 300,
+      "width": 210,
+      "height": 54,
+      "text": "会用工具收集证据",
+      "fontSize": 14,
+      "textColor": "#1F2329",
+      "textAlign": "center",
+      "verticalAlign": "middle",
+      "fillColor": "#FFFFFF",
+      "borderColor": "#5178C6",
+      "borderWidth": 2,
+      "borderRadius": 8
+    },
+    {
+      "type": "rect",
+      "id": "focus2",
+      "x": 485,
+      "y": 300,
+      "width": 210,
+      "height": 54,
+      "text": "会迭代采纳更优代码",
+      "fontSize": 14,
+      "textColor": "#1F2329",
+      "textAlign": "center",
+      "verticalAlign": "middle",
+      "fillColor": "#FFFFFF",
+      "borderColor": "#8569CB",
+      "borderWidth": 2,
+      "borderRadius": 8
+    },
+    {
+      "type": "rect",
+      "id": "focus3",
+      "x": 885,
+      "y": 300,
+      "width": 220,
+      "height": 54,
+      "text": "会管理版本与退出门禁",
+      "fontSize": 14,
+      "textColor": "#1F2329",
+      "textAlign": "center",
+      "verticalAlign": "middle",
+      "fillColor": "#FFFFFF",
+      "borderColor": "#509863",
+      "borderWidth": 2,
+      "borderRadius": 8
+    },
+    {
+      "type": "connector",
+      "connector": {
+        "from": "p1",
+        "to": "p2",
+        "lineShape": "polyline",
+        "lineColor": "#BBBFC4",
+        "lineWidth": 2,
+        "lineStyle": "solid",
+        "endArrow": "arrow",
+        "label": "任务对象扩大"
+      }
+    },
+    {
+      "type": "connector",
+      "connector": {
+        "from": "p2",
+        "to": "p3",
+        "lineShape": "polyline",
+        "lineColor": "#BBBFC4",
+        "lineWidth": 2,
+        "lineStyle": "solid",
+        "endArrow": "arrow",
+        "label": "工程闭环增强"
+      }
+    }
+  ]
+}
