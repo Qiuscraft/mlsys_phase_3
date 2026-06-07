@@ -28,3 +28,13 @@ uv run scripts/generate_toy_weights.py \
   --config target/model_config.json \
   --output target/weights/model.pt
 ```
+
+### .env File
+
+```
+OPENAI_API_KEY=sk-************************************************
+# OPENAI_BASE_URL=https://******.****/v1/
+OPENAI_DEFAULT_MODEL=gpt-5.5
+# OPENAI_AGENTS_DISABLE_TRACING=true
+ENGINE_FILEPATH=/workspace/engine.py
+```

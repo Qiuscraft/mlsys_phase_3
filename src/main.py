@@ -2,7 +2,7 @@ import asyncio
 
 from dotenv import load_dotenv
 
-import src.agent.main as agent_main
+import agent.main as agent_main
 
 
 def main():
