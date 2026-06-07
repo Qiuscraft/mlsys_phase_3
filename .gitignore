@@ -11,3 +11,6 @@ wheels/
 
 # DS_Store
 .DS_Store
+
+# Large files
+target/weights/model.pt 
