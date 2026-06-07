@@ -3,7 +3,7 @@ import asyncio
 from agents import Agent, Runner
 
 from agent.hooks import ToolCallLogger
-from agent.tools import engine_file
+from agent.tools import engine_file, evaluation
 from util.file import read_file
 
 agent = Agent(
@@ -15,6 +15,7 @@ agent = Agent(
         engine_file.replace_in_engine_file,
         engine_file.delete_engine_file,
         engine_file.append_to_engine_file,
+        evaluation.test_correctness,
     ],
 )
 
