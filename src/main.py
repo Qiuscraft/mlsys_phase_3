@@ -1,4 +1,5 @@
 import asyncio
+import os
 from datetime import datetime
 from pathlib import Path
 
@@ -27,7 +28,7 @@ def backup_existing_log(log_path: Path) -> None:
 def main():
     load_dotenv(override=True)
 
-    log_path = Path("logs/app.log")
+    log_path = Path(os.getenv("LOG_FILEPATH") or "logs/app.log")
     log_path.parent.mkdir(parents=True, exist_ok=True)
     backup_existing_log(log_path)
 

@@ -34,6 +34,7 @@ OPENAI_DEFAULT_MODEL=gpt-5.5
 ENGINE_FILEPATH=/workspace/engine.py
 MODEL_CONFIG_FILEPATH=/target/model_config.json
 WEIGHT_DIR=/target/weights
+LOG_FILEPATH=/workspace/results.log
 AGENT_MAX_TURNS=640
 AGENT_EXIT_MAX_RUNTIME_SECONDS=1800
 AGENT_EXIT_MAX_CHECKS=10
@@ -47,4 +48,15 @@ This project uses pre-commit hooks to format and lint the code.
 
 ```bash
 pre-commit install
+```
+
+## Submit Check
+
+```
+ENGINE_FILEPATH=/workspace/engine.py
+MODEL_CONFIG_FILEPATH=/target/model_config.json
+WEIGHT_DIR=/target/weights
+LOG_FILEPATH=/workspace/results.log
+AGENT_MAX_TURNS=640
+AGENT_EXIT_MAX_CHECKS=100
 ```
