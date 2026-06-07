@@ -15,3 +15,6 @@ wheels/
 # Large files
 target/weights/model.pt 
 .env
+
+# Logs
+logs/

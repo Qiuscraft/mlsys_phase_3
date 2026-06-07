@@ -2,8 +2,10 @@ import asyncio
 
 from agents import Agent, Runner
 
+from agent.hooks import ToolCallLogger
 import agent.tools.engine_file as engine_file
 from util.file import read_file
+
 
 agent = Agent(
     name="Agent",
@@ -19,7 +21,11 @@ agent = Agent(
 
 
 async def main():
-    result = await Runner.run(agent, read_file("prompts/input.md"))
+    result = await Runner.run(
+        agent,
+        read_file("prompts/input.md"),
+        hooks=ToolCallLogger(),
+    )
     print(result.final_output)
 
 

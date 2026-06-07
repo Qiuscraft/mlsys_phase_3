@@ -6,7 +6,7 @@ from util.file import read_file
 
 
 def get_engine_filepath() -> str:
-    return os.getenv("ENGINE_FILEPATH", "workspace/engine.py")
+    return os.path.expanduser(os.getenv("ENGINE_FILEPATH", "workspace/engine.py"))
 
 
 @function_tool
