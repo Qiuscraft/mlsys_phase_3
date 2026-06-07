@@ -17,8 +17,10 @@ def view_engine_file() -> str:
 
 
 @function_tool
-def create_engine_file_from_template():
-    """Create a workspace/engine.py file with the content from the template."""
+def delete_old_and_create_engine_file_from_template():
+    """Delete the old workspace/engine.py file and create a new one with the content from the template."""
+    if os.path.exists(get_engine_filepath()):
+        os.remove(get_engine_filepath())
     with open(get_engine_filepath(), "x", encoding="utf-8") as f:
         f.write(read_file("prompts/engine_template.py"))
 
@@ -32,12 +34,6 @@ def replace_in_engine_file(old: str, new: str):
         raise ValueError(f"'{old}' not found in {get_engine_filepath()}")
     with open(get_engine_filepath(), "w", encoding="utf-8") as f:
         f.write(text.replace(old, new, 1))
-
-
-@function_tool
-def delete_engine_file():
-    """Delete the workspace/engine.py file."""
-    os.remove(get_engine_filepath())
 
 
 @function_tool
