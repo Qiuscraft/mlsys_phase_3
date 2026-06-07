@@ -26,7 +26,7 @@ async def main():
         agent,
         read_file("prompts/input.md"),
         hooks=ToolCallLogger(),
-        max_turns=os.getenv("AGENT_MAX_TURNS", 10),
+        max_turns=int(os.getenv("AGENT_MAX_TURNS", 10)),
     )
     print(result.final_output)
 
