@@ -48,5 +48,5 @@ WEIGHT_DIR=/target/weights
 This project uses pre-commit hooks to format and lint the code.
 
 ```bash
-pre-commit install
+uv run pre-commit install
 ```
