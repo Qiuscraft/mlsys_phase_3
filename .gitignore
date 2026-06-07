@@ -14,3 +14,4 @@ wheels/
 
 # Large files
 target/weights/model.pt 
+.env
