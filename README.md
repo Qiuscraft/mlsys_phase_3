@@ -14,6 +14,8 @@ pip install -r requirements.txt
 
 ### Model Weights Generation
 
+If you are not in the submit environment, you must generate the model weights by yourself. You can run the following command in the root directory of the project:
+
 ```bash
 mkdir /target
 cp target/model_config.json /target/model_config.json
@@ -34,7 +36,7 @@ MODEL_CONFIG_FILEPATH=/target/model_config.json
 WEIGHT_DIR=/target/weights
 AGENT_MAX_TURNS=640
 AGENT_EXIT_MAX_RUNTIME_SECONDS=1800
-AGENT_EXIT_MAX_CHECKS=3
+AGENT_EXIT_MAX_CHECKS=10
 ```
 
 ## Dev Environment

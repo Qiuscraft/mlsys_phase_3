@@ -2,6 +2,7 @@ import os
 
 from agents import function_tool
 
+from agent.run_state import record_benchmark_result, record_correctness_result
 from agent.tools.engine_file import get_engine_filepath
 from util.module_runner import run_module_main
 
@@ -26,7 +27,11 @@ def test_correctness() -> str:
         os.getenv("EVALUATION_RTOL", "1e-2"),
     ]
 
-    return run_module_main("evaluator.test_correctness", argv, ["src", "src/evaluator"])
+    output = run_module_main(
+        "evaluator.test_correctness", argv, ["src", "src/evaluator"]
+    )
+    record_correctness_result(output)
+    return output
 
 
 @function_tool
@@ -49,6 +54,8 @@ def benchmark_throughput() -> str:
         os.getenv("EVALUATION_REPEAT", "3"),
     ]
 
-    return run_module_main(
+    output = run_module_main(
         "evaluator.benchmark_throughput", argv, ["src", "src/evaluator"]
     )
+    record_benchmark_result(output)
+    return output
