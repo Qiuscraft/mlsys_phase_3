@@ -43,9 +43,13 @@ def main():
         state[f"{prefix}.self_attn.v_proj.weight"] = normal((kv_out, hidden_size))
         state[f"{prefix}.self_attn.o_proj.weight"] = normal((hidden_size, q_out))
         state[f"{prefix}.post_attention_layernorm.weight"] = torch.ones(hidden_size)
-        state[f"{prefix}.mlp.gate_proj.weight"] = normal((intermediate_size, hidden_size))
+        state[f"{prefix}.mlp.gate_proj.weight"] = normal(
+            (intermediate_size, hidden_size)
+        )
         state[f"{prefix}.mlp.up_proj.weight"] = normal((intermediate_size, hidden_size))
-        state[f"{prefix}.mlp.down_proj.weight"] = normal((hidden_size, intermediate_size))
+        state[f"{prefix}.mlp.down_proj.weight"] = normal(
+            (hidden_size, intermediate_size)
+        )
 
     state["norm.weight"] = torch.ones(hidden_size)
     state["lm_head.weight"] = normal((vocab_size, hidden_size))
@@ -58,4 +62,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

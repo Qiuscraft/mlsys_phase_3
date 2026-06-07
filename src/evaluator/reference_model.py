@@ -39,7 +39,9 @@ class ReferenceModel:
         self.rope_theta = float(config.get("rope_theta", 10000.0))
 
         if self.num_heads % self.num_kv_heads != 0:
-            raise ValueError("num_attention_heads must be divisible by num_key_value_heads")
+            raise ValueError(
+                "num_attention_heads must be divisible by num_key_value_heads"
+            )
 
     def _select_dtype(self, config):
         if self.device.type != "cuda":
@@ -97,7 +99,9 @@ class ReferenceModel:
             x = residual + y
 
             residual = x
-            x_norm = self._rmsnorm(x, self.w[f"{prefix}.post_attention_layernorm.weight"])
+            x_norm = self._rmsnorm(
+                x, self.w[f"{prefix}.post_attention_layernorm.weight"]
+            )
             gate = F.linear(x_norm, self.w[f"{prefix}.mlp.gate_proj.weight"])
             up = F.linear(x_norm, self.w[f"{prefix}.mlp.up_proj.weight"])
             hidden = F.silu(gate) * up

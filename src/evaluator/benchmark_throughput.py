@@ -206,9 +206,9 @@ def benchmark_case(
         measurements.append(timed_run(engine, events, device))
 
     measurements.sort(key=lambda x: x[0])
-    elapsed_ms, prefill_tokens, decode_tokens, total_tokens, peak_memory_mb = measurements[
-        len(measurements) // 2
-    ]
+    elapsed_ms, prefill_tokens, decode_tokens, total_tokens, peak_memory_mb = (
+        measurements[len(measurements) // 2]
+    )
     elapsed_s = elapsed_ms / 1000.0
 
     return BenchResult(
@@ -278,4 +278,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
