@@ -17,10 +17,10 @@ def view_engine_file() -> str:
 
 
 @function_tool
-def create_engine_file(content: str):
-    """Create a workspace/engine.py file with the given content."""
+def create_engine_file_from_template():
+    """Create a workspace/engine.py file with the content from the template."""
     with open(get_engine_filepath(), "x", encoding="utf-8") as f:
-        f.write(content)
+        f.write(read_file("src/agent/tools/engine_file/engine_template.py"))
 
 
 @function_tool
