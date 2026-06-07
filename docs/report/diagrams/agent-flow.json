@@ -1,0 +1,354 @@
+{
+  "version": 2,
+  "nodes": [
+    {
+      "type": "text",
+      "x": 20,
+      "y": 18,
+      "width": 1180,
+      "height": "fit-content",
+      "text": "Agent 主流程：生成、验证、优化、提交",
+      "fontSize": 26,
+      "textColor": "#1F2329",
+      "textAlign": "center"
+    },
+    {
+      "type": "frame",
+      "id": "generate",
+      "x": 60,
+      "y": 130,
+      "width": 185,
+      "height": 90,
+      "layout": "vertical",
+      "gap": 8,
+      "padding": 14,
+      "justifyContent": "center",
+      "alignItems": "stretch",
+      "fillColor": "#F0F4FC",
+      "borderColor": "#5178C6",
+      "borderWidth": 2,
+      "borderRadius": 8,
+      "children": [
+        {
+          "type": "text",
+          "width": "fill-container",
+          "height": "fit-content",
+          "text": "生成候选",
+          "fontSize": 16,
+          "textColor": "#1F2329",
+          "textAlign": "center"
+        },
+        {
+          "type": "text",
+          "width": "fill-container",
+          "height": "fit-content",
+          "text": "创建或修改 engine",
+          "fontSize": 13,
+          "textColor": "#646A73",
+          "textAlign": "center"
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "correct",
+      "x": 310,
+      "y": 130,
+      "width": 185,
+      "height": 90,
+      "layout": "vertical",
+      "gap": 8,
+      "padding": 14,
+      "justifyContent": "center",
+      "alignItems": "stretch",
+      "fillColor": "#EAE2FE",
+      "borderColor": "#8569CB",
+      "borderWidth": 2,
+      "borderRadius": 8,
+      "children": [
+        {
+          "type": "text",
+          "width": "fill-container",
+          "height": "fit-content",
+          "text": "正确性测试",
+          "fontSize": 16,
+          "textColor": "#1F2329",
+          "textAlign": "center"
+        },
+        {
+          "type": "text",
+          "width": "fill-container",
+          "height": "fit-content",
+          "text": "logits 对齐 reference",
+          "fontSize": 13,
+          "textColor": "#646A73",
+          "textAlign": "center"
+        }
+      ]
+    },
+    {
+      "type": "diamond",
+      "id": "pass",
+      "x": 555,
+      "y": 125,
+      "width": 150,
+      "height": 92,
+      "text": "通过?",
+      "fontSize": 14,
+      "textColor": "#1F2329",
+      "fillColor": "#FEF1CE",
+      "borderColor": "#D4B45B",
+      "borderWidth": 2
+    },
+    {
+      "type": "frame",
+      "id": "bench",
+      "x": 760,
+      "y": 130,
+      "width": 185,
+      "height": 90,
+      "layout": "vertical",
+      "gap": 8,
+      "padding": 14,
+      "justifyContent": "center",
+      "alignItems": "stretch",
+      "fillColor": "#DFF5E5",
+      "borderColor": "#509863",
+      "borderWidth": 2,
+      "borderRadius": 8,
+      "children": [
+        {
+          "type": "text",
+          "width": "fill-container",
+          "height": "fit-content",
+          "text": "吞吐评测",
+          "fontSize": 16,
+          "textColor": "#1F2329",
+          "textAlign": "center"
+        },
+        {
+          "type": "text",
+          "width": "fill-container",
+          "height": "fit-content",
+          "text": "prefill / decode / mixed",
+          "fontSize": 13,
+          "textColor": "#646A73",
+          "textAlign": "center"
+        }
+      ]
+    },
+    {
+      "type": "diamond",
+      "id": "better",
+      "x": 1000,
+      "y": 125,
+      "width": 150,
+      "height": 92,
+      "text": "更优?",
+      "fontSize": 14,
+      "textColor": "#1F2329",
+      "fillColor": "#FEF1CE",
+      "borderColor": "#D4B45B",
+      "borderWidth": 2
+    },
+    {
+      "type": "frame",
+      "id": "commit",
+      "x": 965,
+      "y": 285,
+      "width": 205,
+      "height": 88,
+      "layout": "vertical",
+      "gap": 8,
+      "padding": 14,
+      "justifyContent": "center",
+      "alignItems": "stretch",
+      "fillColor": "#FEF1CE",
+      "borderColor": "#D4B45B",
+      "borderWidth": 2,
+      "borderRadius": 8,
+      "children": [
+        {
+          "type": "text",
+          "width": "fill-container",
+          "height": "fit-content",
+          "text": "提交稳定版",
+          "fontSize": 16,
+          "textColor": "#1F2329",
+          "textAlign": "center"
+        },
+        {
+          "type": "text",
+          "width": "fill-container",
+          "height": "fit-content",
+          "text": "写入 workspace/engine.py",
+          "fontSize": 13,
+          "textColor": "#646A73",
+          "textAlign": "center"
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "analyze",
+      "x": 555,
+      "y": 285,
+      "width": 215,
+      "height": 88,
+      "layout": "vertical",
+      "gap": 8,
+      "padding": 14,
+      "justifyContent": "center",
+      "alignItems": "stretch",
+      "fillColor": "#FEE3E2",
+      "borderColor": "#D25D5A",
+      "borderWidth": 2,
+      "borderRadius": 8,
+      "children": [
+        {
+          "type": "text",
+          "width": "fill-container",
+          "height": "fit-content",
+          "text": "分析瓶颈",
+          "fontSize": 16,
+          "textColor": "#1F2329",
+          "textAlign": "center"
+        },
+        {
+          "type": "text",
+          "width": "fill-container",
+          "height": "fit-content",
+          "text": "给出下一轮优化方向",
+          "fontSize": 13,
+          "textColor": "#646A73",
+          "textAlign": "center"
+        }
+      ]
+    },
+    {
+      "type": "connector",
+      "connector": {
+        "from": "generate",
+        "to": "correct",
+        "lineShape": "polyline",
+        "lineColor": "#BBBFC4",
+        "lineWidth": 2,
+        "lineStyle": "solid",
+        "endArrow": "arrow"
+      }
+    },
+    {
+      "type": "connector",
+      "connector": {
+        "from": "correct",
+        "to": "pass",
+        "lineShape": "polyline",
+        "lineColor": "#BBBFC4",
+        "lineWidth": 2,
+        "lineStyle": "solid",
+        "endArrow": "arrow"
+      }
+    },
+    {
+      "type": "connector",
+      "connector": {
+        "from": "pass",
+        "to": "bench",
+        "lineShape": "polyline",
+        "lineColor": "#BBBFC4",
+        "lineWidth": 2,
+        "lineStyle": "solid",
+        "endArrow": "arrow",
+        "label": "是"
+      }
+    },
+    {
+      "type": "connector",
+      "connector": {
+        "from": "bench",
+        "to": "better",
+        "lineShape": "polyline",
+        "lineColor": "#BBBFC4",
+        "lineWidth": 2,
+        "lineStyle": "solid",
+        "endArrow": "arrow"
+      }
+    },
+    {
+      "type": "connector",
+      "connector": {
+        "from": "better",
+        "to": "commit",
+        "lineShape": "polyline",
+        "lineColor": "#BBBFC4",
+        "lineWidth": 2,
+        "lineStyle": "solid",
+        "endArrow": "arrow",
+        "label": "是",
+        "fromAnchor": "bottom",
+        "toAnchor": "top"
+      }
+    },
+    {
+      "type": "connector",
+      "connector": {
+        "from": "better",
+        "to": "analyze",
+        "lineShape": "polyline",
+        "lineColor": "#BBBFC4",
+        "lineWidth": 2,
+        "lineStyle": "solid",
+        "endArrow": "arrow",
+        "label": "否",
+        "fromAnchor": "bottom",
+        "toAnchor": "top"
+      }
+    },
+    {
+      "type": "connector",
+      "connector": {
+        "from": "analyze",
+        "to": "generate",
+        "lineShape": "polyline",
+        "lineColor": "#BBBFC4",
+        "lineWidth": 2,
+        "lineStyle": "dashed",
+        "endArrow": "arrow",
+        "label": "继续编辑",
+        "fromAnchor": "left",
+        "toAnchor": "bottom",
+        "waypoints": [
+          {
+            "x": 140,
+            "y": 330
+          }
+        ]
+      }
+    },
+    {
+      "type": "connector",
+      "connector": {
+        "from": "pass",
+        "to": "generate",
+        "lineShape": "polyline",
+        "lineColor": "#BBBFC4",
+        "lineWidth": 2,
+        "lineStyle": "dashed",
+        "endArrow": "arrow",
+        "label": "否",
+        "fromAnchor": "top",
+        "toAnchor": "top",
+        "waypoints": [
+          {
+            "x": 630,
+            "y": 75
+          },
+          {
+            "x": 150,
+            "y": 75
+          }
+        ]
+      }
+    }
+  ]
+}

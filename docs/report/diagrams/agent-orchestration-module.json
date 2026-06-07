@@ -1,0 +1,256 @@
+{
+  "version": 2,
+  "nodes": [
+    {
+      "type": "text",
+      "x": 20,
+      "y": 18,
+      "width": 1180,
+      "height": "fit-content",
+      "text": "Agent 编排模块",
+      "fontSize": 26,
+      "textColor": "#1F2329",
+      "textAlign": "center"
+    },
+    {
+      "type": "frame",
+      "id": "prompt",
+      "x": 70,
+      "y": 120,
+      "width": 190,
+      "height": 86,
+      "layout": "vertical",
+      "gap": 8,
+      "padding": 14,
+      "justifyContent": "center",
+      "alignItems": "stretch",
+      "fillColor": "#F0F4FC",
+      "borderColor": "#5178C6",
+      "borderWidth": 2,
+      "borderRadius": 8,
+      "children": [
+        {
+          "type": "text",
+          "width": "fill-container",
+          "height": "fit-content",
+          "text": "Prompt",
+          "fontSize": 16,
+          "textColor": "#1F2329",
+          "textAlign": "center"
+        },
+        {
+          "type": "text",
+          "width": "fill-container",
+          "height": "fit-content",
+          "text": "instructions + input",
+          "fontSize": 13,
+          "textColor": "#646A73",
+          "textAlign": "center"
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "agent",
+      "x": 330,
+      "y": 120,
+      "width": 210,
+      "height": 86,
+      "layout": "vertical",
+      "gap": 8,
+      "padding": 14,
+      "justifyContent": "center",
+      "alignItems": "stretch",
+      "fillColor": "#EAE2FE",
+      "borderColor": "#8569CB",
+      "borderWidth": 2,
+      "borderRadius": 8,
+      "children": [
+        {
+          "type": "text",
+          "width": "fill-container",
+          "height": "fit-content",
+          "text": "Agent 对象",
+          "fontSize": 16,
+          "textColor": "#1F2329",
+          "textAlign": "center"
+        },
+        {
+          "type": "text",
+          "width": "fill-container",
+          "height": "fit-content",
+          "text": "SDK Agent + tools",
+          "fontSize": 13,
+          "textColor": "#646A73",
+          "textAlign": "center"
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "runner",
+      "x": 610,
+      "y": 120,
+      "width": 190,
+      "height": 86,
+      "layout": "vertical",
+      "gap": 8,
+      "padding": 14,
+      "justifyContent": "center",
+      "alignItems": "stretch",
+      "fillColor": "#DFF5E5",
+      "borderColor": "#509863",
+      "borderWidth": 2,
+      "borderRadius": 8,
+      "children": [
+        {
+          "type": "text",
+          "width": "fill-container",
+          "height": "fit-content",
+          "text": "Runner",
+          "fontSize": 16,
+          "textColor": "#1F2329",
+          "textAlign": "center"
+        },
+        {
+          "type": "text",
+          "width": "fill-container",
+          "height": "fit-content",
+          "text": "执行多轮工具调用",
+          "fontSize": 13,
+          "textColor": "#646A73",
+          "textAlign": "center"
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "gate",
+      "x": 870,
+      "y": 120,
+      "width": 210,
+      "height": 86,
+      "layout": "vertical",
+      "gap": 8,
+      "padding": 14,
+      "justifyContent": "center",
+      "alignItems": "stretch",
+      "fillColor": "#FEF1CE",
+      "borderColor": "#D4B45B",
+      "borderWidth": 2,
+      "borderRadius": 8,
+      "children": [
+        {
+          "type": "text",
+          "width": "fill-container",
+          "height": "fit-content",
+          "text": "退出门禁",
+          "fontSize": 16,
+          "textColor": "#1F2329",
+          "textAlign": "center"
+        },
+        {
+          "type": "text",
+          "width": "fill-container",
+          "height": "fit-content",
+          "text": "检查测试与 benchmark 状态",
+          "fontSize": 13,
+          "textColor": "#646A73",
+          "textAlign": "center"
+        }
+      ]
+    },
+    {
+      "type": "rect",
+      "id": "hooks",
+      "x": 610,
+      "y": 285,
+      "width": 190,
+      "height": 54,
+      "text": "ToolCallLogger",
+      "fontSize": 14,
+      "textColor": "#1F2329",
+      "textAlign": "center",
+      "verticalAlign": "middle",
+      "fillColor": "#FFFFFF",
+      "borderColor": "#509863",
+      "borderWidth": 2,
+      "borderRadius": 8
+    },
+    {
+      "type": "connector",
+      "connector": {
+        "from": "prompt",
+        "to": "agent",
+        "lineShape": "polyline",
+        "lineColor": "#BBBFC4",
+        "lineWidth": 2,
+        "lineStyle": "solid",
+        "endArrow": "arrow"
+      }
+    },
+    {
+      "type": "connector",
+      "connector": {
+        "from": "agent",
+        "to": "runner",
+        "lineShape": "polyline",
+        "lineColor": "#BBBFC4",
+        "lineWidth": 2,
+        "lineStyle": "solid",
+        "endArrow": "arrow"
+      }
+    },
+    {
+      "type": "connector",
+      "connector": {
+        "from": "runner",
+        "to": "gate",
+        "lineShape": "polyline",
+        "lineColor": "#BBBFC4",
+        "lineWidth": 2,
+        "lineStyle": "solid",
+        "endArrow": "arrow"
+      }
+    },
+    {
+      "type": "connector",
+      "connector": {
+        "from": "runner",
+        "to": "hooks",
+        "lineShape": "polyline",
+        "lineColor": "#BBBFC4",
+        "lineWidth": 2,
+        "lineStyle": "solid",
+        "endArrow": "arrow",
+        "fromAnchor": "bottom",
+        "toAnchor": "top"
+      }
+    },
+    {
+      "type": "connector",
+      "connector": {
+        "from": "gate",
+        "to": "runner",
+        "lineShape": "polyline",
+        "lineColor": "#BBBFC4",
+        "lineWidth": 2,
+        "lineStyle": "dashed",
+        "endArrow": "arrow",
+        "label": "未通过则续跑",
+        "fromAnchor": "top",
+        "toAnchor": "top",
+        "waypoints": [
+          {
+            "x": 980,
+            "y": 70
+          },
+          {
+            "x": 700,
+            "y": 70
+          }
+        ]
+      }
+    }
+  ]
+}

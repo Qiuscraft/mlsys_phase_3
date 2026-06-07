@@ -1,0 +1,200 @@
+{
+  "version": 2,
+  "nodes": [
+    {
+      "type": "text",
+      "x": 20,
+      "y": 18,
+      "width": 1180,
+      "height": "fit-content",
+      "text": "启动与日志模块",
+      "fontSize": 26,
+      "textColor": "#1F2329",
+      "textAlign": "center"
+    },
+    {
+      "type": "frame",
+      "id": "main",
+      "x": 80,
+      "y": 135,
+      "width": 180,
+      "height": 86,
+      "layout": "vertical",
+      "gap": 8,
+      "padding": 14,
+      "justifyContent": "center",
+      "alignItems": "stretch",
+      "fillColor": "#F0F4FC",
+      "borderColor": "#5178C6",
+      "borderWidth": 2,
+      "borderRadius": 8,
+      "children": [
+        {
+          "type": "text",
+          "width": "fill-container",
+          "height": "fit-content",
+          "text": "src/main.py",
+          "fontSize": 16,
+          "textColor": "#1F2329",
+          "textAlign": "center"
+        },
+        {
+          "type": "text",
+          "width": "fill-container",
+          "height": "fit-content",
+          "text": "统一入口",
+          "fontSize": 13,
+          "textColor": "#646A73",
+          "textAlign": "center"
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "env",
+      "x": 335,
+      "y": 135,
+      "width": 180,
+      "height": 86,
+      "layout": "vertical",
+      "gap": 8,
+      "padding": 14,
+      "justifyContent": "center",
+      "alignItems": "stretch",
+      "fillColor": "#EAE2FE",
+      "borderColor": "#8569CB",
+      "borderWidth": 2,
+      "borderRadius": 8,
+      "children": [
+        {
+          "type": "text",
+          "width": "fill-container",
+          "height": "fit-content",
+          "text": "加载环境",
+          "fontSize": 16,
+          "textColor": "#1F2329",
+          "textAlign": "center"
+        },
+        {
+          "type": "text",
+          "width": "fill-container",
+          "height": "fit-content",
+          "text": ".env / env vars",
+          "fontSize": 13,
+          "textColor": "#646A73",
+          "textAlign": "center"
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "log",
+      "x": 590,
+      "y": 135,
+      "width": 210,
+      "height": 86,
+      "layout": "vertical",
+      "gap": 8,
+      "padding": 14,
+      "justifyContent": "center",
+      "alignItems": "stretch",
+      "fillColor": "#DFF5E5",
+      "borderColor": "#509863",
+      "borderWidth": 2,
+      "borderRadius": 8,
+      "children": [
+        {
+          "type": "text",
+          "width": "fill-container",
+          "height": "fit-content",
+          "text": "日志准备",
+          "fontSize": 16,
+          "textColor": "#1F2329",
+          "textAlign": "center"
+        },
+        {
+          "type": "text",
+          "width": "fill-container",
+          "height": "fit-content",
+          "text": "备份旧日志并写 results.log",
+          "fontSize": 13,
+          "textColor": "#646A73",
+          "textAlign": "center"
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "run",
+      "x": 875,
+      "y": 135,
+      "width": 220,
+      "height": 86,
+      "layout": "vertical",
+      "gap": 8,
+      "padding": 14,
+      "justifyContent": "center",
+      "alignItems": "stretch",
+      "fillColor": "#FEF1CE",
+      "borderColor": "#D4B45B",
+      "borderWidth": 2,
+      "borderRadius": 8,
+      "children": [
+        {
+          "type": "text",
+          "width": "fill-container",
+          "height": "fit-content",
+          "text": "启动 Agent",
+          "fontSize": 16,
+          "textColor": "#1F2329",
+          "textAlign": "center"
+        },
+        {
+          "type": "text",
+          "width": "fill-container",
+          "height": "fit-content",
+          "text": "asyncio.run(agent_main)",
+          "fontSize": 13,
+          "textColor": "#646A73",
+          "textAlign": "center"
+        }
+      ]
+    },
+    {
+      "type": "connector",
+      "connector": {
+        "from": "main",
+        "to": "env",
+        "lineShape": "polyline",
+        "lineColor": "#BBBFC4",
+        "lineWidth": 2,
+        "lineStyle": "solid",
+        "endArrow": "arrow"
+      }
+    },
+    {
+      "type": "connector",
+      "connector": {
+        "from": "env",
+        "to": "log",
+        "lineShape": "polyline",
+        "lineColor": "#BBBFC4",
+        "lineWidth": 2,
+        "lineStyle": "solid",
+        "endArrow": "arrow"
+      }
+    },
+    {
+      "type": "connector",
+      "connector": {
+        "from": "log",
+        "to": "run",
+        "lineShape": "polyline",
+        "lineColor": "#BBBFC4",
+        "lineWidth": 2,
+        "lineStyle": "solid",
+        "endArrow": "arrow"
+      }
+    }
+  ]
+}
