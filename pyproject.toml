@@ -1,0 +1,7 @@
+[project]
+name = "mlsys-phase-3"
+version = "0.1.0"
+description = "Qiu Jun's implementation for MLSYS Course Project Phase 3."
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = []
