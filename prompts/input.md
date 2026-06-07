@@ -4,8 +4,9 @@ Generate an inference runtime for a small LLaMA-like decoder-only model.
 
 ## Workflow
 
-1. Create a workspace/engine.py file from the template. If the file already exists, end the workflow.
-2. Edit the workspace/engine.py file to implement the required methods `prefill`, `decode`, and `remove`.
+1. Create a workspace/engine.py file from the template if it does not exist.
+2. Edit the workspace/engine.py file to implement the required methods `prefill`, `decode`, and `remove`, you should consider the correctness of your implementation.
+3. Test correctness of your implementation.
 
 ## Introduction of the engine.py File
 

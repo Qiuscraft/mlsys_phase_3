@@ -37,4 +37,6 @@ OPENAI_API_KEY=sk-************************************************
 OPENAI_DEFAULT_MODEL=gpt-5.5
 # OPENAI_AGENTS_DISABLE_TRACING=true
 ENGINE_FILEPATH=/workspace/engine.py
+MODEL_CONFIG_FILEPATH=/target/model_config.json
+WEIGHT_DIR=/target/weights
 ```
