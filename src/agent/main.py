@@ -51,9 +51,12 @@ def _gate_feedback(failures: list[str]) -> str:
         "Your previous response attempted to exit, but the runner rejected it.\n\n"
         f"{bullet_list}\n\n"
         "Continue improving the engine. If you changed the engine, run "
-        "test_correctness after the latest edit, then run benchmark_throughput. "
-        "Only provide a final answer after can_agent_exit is true and the latest "
-        "engine revision has passed both checks."
+        "test_correctness after the latest candidate edit, then run "
+        "benchmark_throughput. Only benchmark_throughput can promote the "
+        "candidate into the stable /workspace/engine.py file, and it will do so "
+        "only when correctness has passed and performance improves. Only provide "
+        "a final answer after can_agent_exit is true and the latest candidate "
+        "revision has passed both checks."
     )
 
 
