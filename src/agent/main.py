@@ -12,9 +12,8 @@ agent = Agent(
     instructions=read_file("prompts/instructions.md"),
     tools=[
         engine_file.view_engine_file,
-        engine_file.create_engine_file_from_template,
+        engine_file.delete_old_and_create_engine_file_from_template,
         engine_file.replace_in_engine_file,
-        engine_file.delete_engine_file,
         engine_file.append_to_engine_file,
         evaluation.test_correctness,
     ],
