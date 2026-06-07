@@ -9,6 +9,12 @@
 
 ### Python Environment
 
+Install uv if your environment doesn't have it.
+
+```bash
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
+
 ```bash
 uv sync
 ```
