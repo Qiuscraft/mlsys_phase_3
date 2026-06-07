@@ -3,20 +3,13 @@
 ## Technical Stack
 
 - IDE: Visual Studio Code
-- Package Manager: uv
 
 ## Installation
 
 ### Python Environment
 
-Install uv if your environment doesn't have it.
-
-```bash
-curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
-
-```bash
-uv sync
+pip install -r requirements.txt
 ```
 
 ### Model Weights Generation
@@ -49,5 +42,5 @@ AGENT_MAX_TURNS=10
 This project uses pre-commit hooks to format and lint the code.
 
 ```bash
-uv run pre-commit install
+pre-commit install
 ```

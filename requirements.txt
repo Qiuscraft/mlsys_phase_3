@@ -1,0 +1,5 @@
+dotenv
+loguru
+openai-agents
+pre-commit
+ruff
