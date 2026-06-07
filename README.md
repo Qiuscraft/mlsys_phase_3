@@ -19,14 +19,6 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 uv sync
 ```
 
-### Pre-Commit Hooks
-
-This project uses pre-commit hooks to format and lint the code.
-
-```bash
-pre-commit install
-```
-
 ### Model Weights Generation
 
 ```bash
@@ -45,4 +37,14 @@ OPENAI_DEFAULT_MODEL=gpt-5.5
 ENGINE_FILEPATH=/workspace/engine.py
 MODEL_CONFIG_FILEPATH=/target/model_config.json
 WEIGHT_DIR=/target/weights
+```
+
+## Dev Environment
+
+### Pre-Commit Hooks
+
+This project uses pre-commit hooks to format and lint the code.
+
+```bash
+pre-commit install
 ```
