@@ -1,20 +1,15 @@
-import io
 import os
-import sys
-import traceback
-from contextlib import redirect_stderr, redirect_stdout
 
 from agents import function_tool
 
 from agent.tools.engine_file import get_engine_filepath
+from util.module_runner import run_module_main
 
 
 @function_tool
 def test_correctness() -> str:
     """Run the public correctness evaluator for workspace/engine.py."""
 
-    src_dir = "src"
-    evaluator_dir = "src/evaluator"
     argv = [
         "test_correctness.py",
         "--engine",
@@ -31,37 +26,13 @@ def test_correctness() -> str:
         os.getenv("EVALUATION_RTOL", "1e-2"),
     ]
 
-    old_argv = sys.argv[:]
-    inserted_paths: list[str] = []
-    output = io.StringIO()
-
-    try:
-        for path in (src_dir, evaluator_dir):
-            if path not in sys.path:
-                sys.path.insert(0, path)
-                inserted_paths.append(path)
-
-        from evaluator.test_correctness import main
-
-        sys.argv = argv
-        with redirect_stdout(output), redirect_stderr(output):
-            main()
-    except Exception:
-        return output.getvalue() + traceback.format_exc()
-    finally:
-        sys.argv = old_argv
-        for path in inserted_paths:
-            sys.path.remove(path)
-
-    return output.getvalue()
+    return run_module_main("evaluator.test_correctness", argv, ["src", "src/evaluator"])
 
 
 @function_tool
 def benchmark_throughput() -> str:
     """Run the public throughput benchmark for workspace/engine.py."""
 
-    src_dir = "src"
-    evaluator_dir = "src/evaluator"
     argv = [
         "benchmark_throughput.py",
         "--engine",
@@ -78,26 +49,6 @@ def benchmark_throughput() -> str:
         os.getenv("EVALUATION_REPEAT", "3"),
     ]
 
-    old_argv = sys.argv[:]
-    inserted_paths: list[str] = []
-    output = io.StringIO()
-
-    try:
-        for path in (src_dir, evaluator_dir):
-            if path not in sys.path:
-                sys.path.insert(0, path)
-                inserted_paths.append(path)
-
-        from evaluator.benchmark_throughput import main
-
-        sys.argv = argv
-        with redirect_stdout(output), redirect_stderr(output):
-            main()
-    except Exception:
-        return output.getvalue() + traceback.format_exc()
-    finally:
-        sys.argv = old_argv
-        for path in inserted_paths:
-            sys.path.remove(path)
-
-    return output.getvalue()
+    return run_module_main(
+        "evaluator.benchmark_throughput", argv, ["src", "src/evaluator"]
+    )

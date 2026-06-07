@@ -61,7 +61,18 @@ This method does not need to return anything. It should release or delete the re
 
 ## Workflow
 
-1. Delete the old workspace/engine.py file, and create a workspace/engine.py file from the template.
-2. Edit the workspace/engine.py file to implement the required methods `prefill`, `decode`, and `remove`, you should consider the correctness of your implementation.
-3. Test correctness of your implementation, if the test failed, back to 3.
-4. Run the throughput benchmark.
+init: Delete the old workspace/engine.py file, and create a workspace/engine.py file from the template.
+
+edit: Edit the workspace/engine.py file to implement the required methods `prefill`, `decode`, and `remove`, you should consider the correctness of your implementation.
+
+test: Use an external tool to test correctness of your implementation, if the test failed, back to step edit.
+
+benchmark: Use an external tool to run the throughput benchmark.
+
+performance test: Compare the current benchmark performance with the previous performance, if the current performance is not better, back to step edit.
+
+check if exit now: Use the external tool to judge if you can exit. If you can exit, go to step exit, else go to step edit.
+
+improve: Use an external tool to analyse the output of step benchmark, reconize the bottleneck, and back to step edit to solve the bottleneck and improve the performance.
+
+exit: Summarize the design and the performance of your implementation.

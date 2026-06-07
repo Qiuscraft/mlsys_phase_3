@@ -1,10 +1,11 @@
 import asyncio
 import os
+from loguru import logger
 
 from agents import Agent, Runner
 
 from agent.hooks import ToolCallLogger
-from agent.tools import engine_file, evaluation
+from agent.tools import benchmark_analysis, engine_file, evaluation, exit_judge
 from util.file import read_file
 
 agent = Agent(
@@ -17,18 +18,21 @@ agent = Agent(
         engine_file.append_to_engine_file,
         evaluation.test_correctness,
         evaluation.benchmark_throughput,
+        benchmark_analysis.analyze_benchmark_result,
+        exit_judge.can_agent_exit,
     ],
 )
 
 
 async def main():
+    exit_judge.reset_agent_exit_judge()
     result = await Runner.run(
         agent,
         read_file("prompts/input.md"),
         hooks=ToolCallLogger(),
         max_turns=int(os.getenv("AGENT_MAX_TURNS", 10)),
     )
-    print(result.final_output)
+    logger.info("final output: {}", result.final_output)
 
 
 if __name__ == "__main__":
