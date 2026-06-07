@@ -22,9 +22,11 @@ uv sync
 ### Model Weights Generation
 
 ```bash
+mkdir /target
+cp target/model_config.json /target/model_config.json
 uv run scripts/generate_toy_weights.py \
-  --config target/model_config.json \
-  --output target/weights/model.pt
+  --config /target/model_config.json \
+  --output /target/weights/model.pt
 ```
 
 ### .env File
